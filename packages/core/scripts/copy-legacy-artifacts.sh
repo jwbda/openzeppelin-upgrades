@@ -7,7 +7,8 @@ set -euo pipefail
 mkdir -p artifacts
 
 # Assert that a previous version of @openzeppelin/upgrades-core is installed, which contains legacy artifacts.
-if ! jq -r .version ../../node_modules/@openzeppelin/upgrades-core-legacy/package.json | grep -q '^1.31.3$'; then
+# if ! jq -r .version ../../node_modules/@openzeppelin/upgrades-core-legacy/package.json | grep -q '^1.31.3$'; then # 正文
+if ! jq -r .version ./node_modules/@openzeppelin/upgrades-core-legacy/package.json | grep -q '^1.31.3$'; then
   echo "Error: @openzeppelin/upgrades-core must depend on a previous version of itself at version 1.31.3"
   exit 1
 fi
@@ -26,10 +27,12 @@ for file in \
   artifacts/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol/ITransparentUpgradeableProxy.json \
   artifacts/build-info.json
 do
-  if [ ! -f "../../node_modules/@openzeppelin/upgrades-core-legacy/$file" ]; then
+  # if [ ! -f "../../node_modules/@openzeppelin/upgrades-core-legacy/$file" ]; then # 正文
+  if [ ! -f "./node_modules/@openzeppelin/upgrades-core-legacy/$file" ]; then
     echo "Error: @openzeppelin/upgrades-core must depend on a previous version of itself which contains $file"
     exit 1
   fi
 done
 
-cp -R ../../node_modules/@openzeppelin/upgrades-core-legacy/artifacts .
+# cp -R ../../node_modules/@openzeppelin/upgrades-core-legacy/artifacts . # 正文
+cp -R ./node_modules/@openzeppelin/upgrades-core-legacy/artifacts . # 正文

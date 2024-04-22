@@ -29,22 +29,22 @@ const jsonRelativePath = `artifacts/@openzeppelin/contracts/proxy/ERC1967/ERC196
 // Assert that all deployable proxy artifacts use the same build-info file
 assert(
   buildInfoField ===
-    readJSON('artifacts/@openzeppelin/contracts/proxy/beacon/BeaconProxy.sol/BeaconProxy.dbg.json').buildInfo,
+  readJSON('artifacts/@openzeppelin/contracts/proxy/beacon/BeaconProxy.sol/BeaconProxy.dbg.json').buildInfo,
 );
 assert(
   buildInfoField ===
-    readJSON('artifacts/@openzeppelin/contracts/proxy/beacon/UpgradeableBeacon.sol/UpgradeableBeacon.dbg.json')
-      .buildInfo,
+  readJSON('artifacts/@openzeppelin/contracts/proxy/beacon/UpgradeableBeacon.sol/UpgradeableBeacon.dbg.json')
+    .buildInfo,
 );
 assert(
   buildInfoField ===
-    readJSON(
-      'artifacts/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol/TransparentUpgradeableProxy.dbg.json',
-    ).buildInfo,
+  readJSON(
+    'artifacts/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol/TransparentUpgradeableProxy.dbg.json',
+  ).buildInfo,
 );
 assert(
   buildInfoField ===
-    readJSON('artifacts/@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol/ProxyAdmin.dbg.json').buildInfo,
+  readJSON('artifacts/@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol/ProxyAdmin.dbg.json').buildInfo,
 );
 
 let buildInfo = readJSON(jsonRelativePath);
@@ -110,4 +110,5 @@ writeJSON('artifacts/build-info-v5.json', modifiedBuildInfo);
 if (fs.existsSync('artifacts/@openzeppelin/contracts-v5')) {
   fs.rmSync('artifacts/@openzeppelin/contracts-v5', { recursive: true });
 }
+
 fs.renameSync('artifacts/@openzeppelin/contracts', 'artifacts/@openzeppelin/contracts-v5');

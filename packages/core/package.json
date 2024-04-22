@@ -30,12 +30,12 @@
   ],
   "scripts": {
     "clean": "hardhat clean && rimraf dist *.tsbuildinfo",
-    "compile": "tsc -b && yarn compile:contracts",
+    "compile": "tsc -b && pnpm run compile:contracts",
     "compile:contracts": "hardhat compile",
     "copyfiles": "node scripts/copy-build-info-v5.js && bash scripts/copy-legacy-artifacts.sh",
-    "prepare": "yarn clean && yarn compile && yarn copyfiles",
-    "test": "tsc -b && hardhat compile --force && yarn copyfiles && ava",
-    "test:watch": "hardhat compile --force && yarn copyfiles && fgbg 'ava --watch' 'tsc -b --watch' --",
+    "build": "echo 78777777 && pnpm run clean && pnpm run compile && pnpm run copyfiles",
+    "test": "tsc -b && hardhat compile --force && pnpm run copyfiles && ava",
+    "test:watch": "hardhat compile --force && pnpm run copyfiles && fgbg 'ava --watch' 'tsc -b --watch' --",
     "version": "node ../../scripts/bump-changelog.js",
     "cli": "node ./dist/cli/cli.js"
   },

@@ -113,15 +113,26 @@ test('calls defender deploy', async t => {
 });
 
 test('calls defender deploy with relayerId', async t => {
+  // console.log(">>> run in defender-deploy.js --> 777666", t, 111, ethers);
   const { spy, deploy, fakeHre, fakeChainId } = t.context;
+
+  // console.log(">>> run in defender-deploy.js --> aaaaaa");
 
   const contractPath = 'contracts/Greeter.sol';
   const contractName = 'Greeter';
 
-  const factory = await ethers.getContractFactory(contractName);
+  // const factory = await ethers.getContractFactory(contractName); // 正文
+
+  const factory = await ethers.getContractFactory(contractName); // 正文
+  // try {
   const result = await deploy.defenderDeploy(fakeHre, factory, { relayerId: RELAYER_ID });
+  // } catch (error) {
+  //   console.log("error -->", error);
+  // }
+  // console.log(">>> run in defender-deploy.js --> 000000");
 
   const buildInfo = await hre.artifacts.getBuildInfo(`${contractPath}:${contractName}`);
+  // console.log(">>> run in defender-deploy.js --> 111111");
   sinon.assert.calledWithExactly(spy, {
     contractName: contractName,
     contractPath: contractPath,
@@ -137,6 +148,7 @@ test('calls defender deploy with relayerId', async t => {
     libraries: undefined,
   });
 
+  // console.log("t -> ", t, "result ->", result);
   assertResult(t, result);
 });
 
