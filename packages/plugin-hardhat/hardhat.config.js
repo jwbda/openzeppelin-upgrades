@@ -1,4 +1,6 @@
-require('@openzeppelin/hardhat-upgrades');
+// require('@openzeppelin/hardhat-upgrades');
+require("./dist/index")
+require("@nomicfoundation/hardhat-toolbox");
 
 const override = {
   version: '0.8.10',

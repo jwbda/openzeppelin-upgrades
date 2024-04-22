@@ -5,11 +5,12 @@
   "scripts": {
     "docs": "oz-docs",
     "docs:watch": "oz-docs watch",
-    "prepare": "wsrun -ms prepare && tsc -b",
-    "lint": "yarn lint:path .",
+    "build": "pnpm run --recursive build",
+    "lint": "pnpm run lint:path .",
     "lint:path": "eslint --ignore-path .gitignore --max-warnings 0",
-    "test": "wsrun -ms test",
-    "coverage": "nyc yarn test"
+    "test": "pnpm run --recursive --workspace-concurrency 4 --bail --parallel --no-stream test",
+    "coverage": "nyc pnpm run test",
+    "clean": "pnpm run --recursive clean"
   },
   "devDependencies": {
     "@openzeppelin/docs-utils": "^0.1.0",
@@ -24,10 +25,5 @@
     "prettier": "^3.0.0",
     "typescript": "^5.0.0",
     "wsrun": "^5.2.4"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
   }
 }
